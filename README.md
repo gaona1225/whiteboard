@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Whiteboard
 
-## Getting Started
+实时协同白板（作品集项目三）。重点：工程深度——实时同步、画布性能。
 
-First, run the development server:
+## 技术选型
+- Next.js 13.5.6（App Router）+ TypeScript + React 18
+- Yjs + Hocuspocus（同步服务器自搭）
+- MongoDB Atlas M0（持久化）
+- 仅 PC 端，不登录，访客身份
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 目录结构
+```
+whiteboard/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx              # 首页（最近房间列表）
+│   │   ├── layout.tsx
+│   │   ├── globals.css
+│   │   ├── room/
+│   │   │   └── [name]/
+│   │   │       └── page.tsx      # 白板房间页
+│   │   └── admin/
+│   │       └── page.tsx          # 管理页 /admin
+│   ├── components/               # 画布、工具栏、头像、弹层等
+│   ├── lib/                      # Yjs 文档模型、房间、工具函数
+│   └── types/                    # 类型定义
+├── server/
+│   └── index.js                  # 同步服务器入口（Phase 2 接 Hocuspocus）
+├── public/
+├── package.json
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 本地运行
+需要两个终端窗口：
+```bash
+npm run dev     # 前端 + API，http://localhost:3000
+npm run server  # 同步服务器，端口 1234
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 部署
+演示视频 + 本地运行（不用 Vercel/Railway）。
